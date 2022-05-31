@@ -11,6 +11,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 
+
 class AlienInvasion:
     """管理游戏资源和行为的类"""
 
@@ -181,11 +182,13 @@ class AlienInvasion:
 
     def _check_keydown_events(self, event):
         """响应按键"""
+
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
+            self._update_score()
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
@@ -251,6 +254,18 @@ class AlienInvasion:
             self.play_button.draw_button()
 
         pygame.display.flip()
+
+    def _update_score(self):
+        """更新最高得分"""
+        filename = 'score.txt'
+
+        with open(filename) as file_object:
+            for score in file_object:
+                self.high_score = int(score)
+        with open(filename, 'w') as file_object:
+            if self.stats.high_score > self.high_score:
+                file_object.write(str(self.stats.high_score))
+                self.high_score = self.stats.high_score
 
 if __name__ == '__main__':
     # 创建游戏实例并运行游戏
