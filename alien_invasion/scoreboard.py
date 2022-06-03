@@ -48,8 +48,8 @@ class Scoreboard:
         """将得分转换成一副渲染的图像"""
         score_str = str(self.stats.score)
 
-        self.score_image = self.font.render(score_str,True,
-                 self.text_color, self.settings.bg_color)
+        self.score_image = self.font.render(score_str, True,
+                  self.text_color, self.settings.bg_color)
         # 在屏幕右下显示得分
         self.score_rect = self.score_image.get_rect()
         self.score_rect.right = self.screen_rect.right - 20
@@ -71,11 +71,12 @@ class Scoreboard:
     def prep_level(self):
         """将等级转化为渲染的图像"""
         level_str = str(self.stats.level)
-        self.level_image = self.font.render(level_str,True,
-                 self.text_color, self.settings.bg_color)
+        self.level_image = self.font.render(level_str, True,
+                  self.text_color, self.settings.bg_color)
 
         # 将等级放在得分下面
         self.level_rect = self.level_image.get_rect()
         self.level_rect.right = self.score_rect.right
         self.level_rect.top = self.score_rect.bottom +10
+
 
